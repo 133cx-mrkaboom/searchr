@@ -16,7 +16,7 @@ ___main___ = "___main___"
 while ___main___ == "___main___":
     #options
 
-    choice = Null
+    choice = None
 
     choice = input("Browse or Scrape: (B/S)")
 

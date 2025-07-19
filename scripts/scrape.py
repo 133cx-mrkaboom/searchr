@@ -16,7 +16,7 @@ ___main___ = "___main___"
 
 while ___main___ == "___main___":
 
-    url = Null
+    url = None
 
 
     # Open the file in read mode
