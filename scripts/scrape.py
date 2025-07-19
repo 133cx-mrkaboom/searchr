@@ -1,71 +1,49 @@
-#Scrape.py
+# Scrape.py
 # 2025 133cx-MRKABOOM
-#
 # Part of the Searchr Project
-
 
 import requests
 from bs4 import BeautifulSoup
+import os
 
 print("Scrape.py running")
 
-___main___ = "___main___"
+def scrape_urls():
+    input_file = "data/to_scrape.txt"
+    output_file = "data/urls.txt"
 
-#main funcutions
+    # Check if input file exists
+    if not os.path.exists(input_file):
+        print(f"Error: '{input_file}' does not exist.")
+        return
 
+    # Clear output file before writing
+    open(output_file, 'w').close()
 
-while ___main___ == "___main___":
+    # Read URLs to scrape
+    with open(input_file, "r") as file:
+        urls = [line.strip() for line in file if line.strip()]
 
-    url = None
+    for url in urls:
+        print(f"\nScraping: {url}")
 
+        try:
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
+        except requests.RequestException as e:
+            print(f"Failed to retrieve {url}: {e}")
+            continue
 
-    # Open the file in read mode
-    file = open("data/to_scrape.txt", "r")
-
-    # Read the first line
-    line = file.readline()
-
-    while line:
-
-
-        #prints the url to scrape from file
-        print(line.strip())
-
-
-        #reads one url from the file
-        url = file.readline()
-
-
-        #fetches the data from that url
-        response = requests.get(url)
-
-
-        #loads bs4
         soup = BeautifulSoup(response.content, 'html.parser')
+        links = soup.find_all('a')
+
+        with open(output_file, 'a') as out_file:
+            for link in links:
+                href = link.get('href')
+                if href:
+                    print(href)
+                    out_file.write(href + '\n')
 
 
-        #finds all <a> tags in the html
-        for link in soup.find_all('a'):
-
-
-            #prints the <a> tag
-            print(link.get('href'))
-
-
-            #puts the <a> tag in href varable
-            href = link.get('href')
-
-
-            #opens /data/urls.txt
-            with open("data/urls.txt", "w") as f:
-
-
-                #writes the a tag to /data/urls.txt
-                f.write(href)
-
-            #closes the file
-            f.close()
-
-
-    # Close the file
-    file.close()
+if __name__ == "__main__":
+    scrape_urls()
