@@ -20,7 +20,7 @@ while ___main___ == "___main___":
 
 
     # Open the file in read mode
-    file = open("/../data/to_scrape.txt", "r")
+    file = open("data/to_scrape.txt", "r")
 
     # Read the first line
     line = file.readline()
@@ -57,7 +57,7 @@ while ___main___ == "___main___":
 
 
             #opens /data/urls.txt
-            with open("/../data/urls.txt", "w") as f:
+            with open("data/urls.txt", "w") as f:
 
 
                 #writes the a tag to /data/urls.txt

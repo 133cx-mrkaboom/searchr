@@ -31,6 +31,12 @@ while ___main___ == "___main___":
 
         print("Entered Scraping mode")
 
+        #runs scrape.py
+        with open("scripts/scrape.py") as f:
+
+            exec(f.read())
+
+
 
     else:
 
