@@ -18,19 +18,21 @@ while ___main___ == "___main___":
 
     choice = None
 
-    choice = input("Browse or Scrape: (B/S)")
+    choice = input("Browse or Scrape: (B/S) ").lower()
 
-    if choice == "B" or "b":
-        #code for browsing
+    if choice == "b":
+
 
         print("Entered Browsing Mode")
 
 
-    if choice == "S" or "s":
-        # code for scraping
+    elif choice == "s":
+
 
         print("Entered Scraping mode")
 
+
     else:
+
 
         print("Please Put Valid Option")
