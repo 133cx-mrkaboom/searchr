@@ -20,7 +20,7 @@ while ___main___ == "___main___":
 
 
     # Open the file in read mode
-    file = open("geeks.txt", "r")
+    file = open("/../data/to_scrape.txt", "r")
 
     # Read the first line
     line = file.readline()
